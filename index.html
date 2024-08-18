@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Net Cash Calculator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    .container {
+      max-width: 400px;
+      margin: auto;
+    }
+    input {
+      width: calc(100% - 22px);
+      padding: 10px;
+      margin: 5px 0;
+      font-size: 16px;
+    }
+    #result {
+      font-size: 18px;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Net Cash Calculator</h2>
+    <label for="totalDailyIncome">Total Daily Income:</label>
+    <input type="number" id="totalDailyIncome" step="0.01" oninput="updateNetCash()">
+    
+    <label for="totalIncomeFromGeneralSales">Total Income from General Sales:</label>
+    <input type="number" id="totalIncomeFromGeneralSales" step="0.01" oninput="updateNetCash()">
+    
+    <label for="remainingIncomeFromPreviousDay">Remaining Income from Previous Day:</label>
+    <input type="number" id="remainingIncomeFromPreviousDay" step="0.01" oninput="updateNetCash()">
+    
+    <label for="remainingIncomeAfterPurchasePayments">Remaining Income After Purchase Payments:</label>
+    <input type="number" id="remainingIncomeAfterPurchasePayments" step="0.01" oninput="updateNetCash()">
+    
+    <label for="dailyExpenses">Daily Expenses:</label>
+    <input type="number" id="dailyExpenses" step="0.01" oninput="updateNetCash()">
+    
+    <label for="amountToRemainForTomorrowPurchases">Amount to Remain for Tomorrow's Purchases:</label>
+    <input type="number" id="amountToRemainForTomorrowPurchases" step="0.01" oninput="updateNetCash()">
+    
+    <label for="changeRemainingForTomorrow">Change Remaining for Tomorrow:</label>
+    <input type="number" id="changeRemainingForTomorrow" step="0.01" oninput="updateNetCash()">
+    
+    <div id="result">Net Cash: 0.00</div>
+  </div>
+
+  <script>
+    function updateNetCash() {
+      // Get values from inputs
+      var totalDailyIncome = parseFloat(document.getElementById('totalDailyIncome').value) || 0;
+      var totalIncomeFromGeneralSales = parseFloat(document.getElementById('totalIncomeFromGeneralSales').value) || 0;
+      var remainingIncomeFromPreviousDay = parseFloat(document.getElementById('remainingIncomeFromPreviousDay').value) || 0;
+      var remainingIncomeAfterPurchasePayments = parseFloat(document.getElementById('remainingIncomeAfterPurchasePayments').value) || 0;
+      var dailyExpenses = parseFloat(document.getElementById('dailyExpenses').value) || 0;
+      var amountToRemainForTomorrowPurchases = parseFloat(document.getElementById('amountToRemainForTomorrowPurchases').value) || 0;
+      var changeRemainingForTomorrow = parseFloat(document.getElementById('changeRemainingForTomorrow').value) || 0;
+      
+      // Calculate net cash
+      var netCash = totalDailyIncome + totalIncomeFromGeneralSales +
+                    remainingIncomeFromPreviousDay + remainingIncomeAfterPurchasePayments -
+                    dailyExpenses - amountToRemainForTomorrowPurchases - changeRemainingForTomorrow;
+      
+      // Display result
+      document.getElementById('result').innerText = 'Net Cash: ' + netCash.toFixed(2);
+    }
+  </script>
+</body>
+</html>
