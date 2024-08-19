@@ -112,7 +112,7 @@
             const tomorrowPurchases = parseFloat(document.getElementById('tomorrowPurchases').value.replace(/,/g, '')) || 0;
             const changeForTomorrow = parseFloat(document.getElementById('changeForTomorrow').value.replace(/,/g, '')) || 0;
 
-            const netCash = totalIncome + generalIncome + remainingPreviousDay - remainingAfterPurchases - dailyExpenses - tomorrowPurchases - changeForTomorrow;
+            const netCash = totalIncome + generalIncome + remainingPreviousDay + remainingAfterPurchases - dailyExpenses - tomorrowPurchases - changeForTomorrow;
 
             document.getElementById('netCashResult').textContent = 'الكاش الصافي: ' + formatCurrency(netCash);
         }
