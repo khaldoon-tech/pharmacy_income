@@ -6,73 +6,95 @@
     <title>حساب الكاش الصافي</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             direction: rtl;
             text-align: right;
-            padding: 20px;
-            background-color: #f4f4f4;
+            padding: 10px;
             margin: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 500px;
+            margin: auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
         h1 {
+            text-align: center;
             color: #333;
+            font-size: 1.5em;
         }
-        label, input {
-            display: block;
-            margin-bottom: 10px;
+        label {
+            font-size: 1em;
+            color: #555;
         }
         input[type="text"] {
-            width: calc(100% - 22px);
+            width: 100%;
             padding: 10px;
-            text-align: right;
-            border: 1px solid #ddd;
+            margin: 5px 0 15px;
+            border: 1px solid #ccc;
             border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 1em;
         }
         .result {
             font-size: 1.2em;
             font-weight: bold;
-            margin-top: 20px;
-            padding: 10px;
-            background-color: #fff;
-            border: 1px solid #ddd;
-            border-radius: 4px;
             text-align: center;
+            color: #27ae60;
+            margin-top: 20px;
+        }
+        @media (max-width: 500px) {
+            .container {
+                padding: 15px;
+            }
+            h1 {
+                font-size: 1.2em;
+            }
+            input[type="text"] {
+                font-size: 0.9em;
+                padding: 8px;
+            }
+            .result {
+                font-size: 1em;
+            }
         }
     </style>
 </head>
 <body>
-    <h1>حساب الكاش الصافي</h1>
+    <div class="container">
+        <h1>حساب الكاش الصافي</h1>
 
-    <label for="totalIncome">الدخل الكلي من السيستم:</label>
-    <input type="text" id="totalIncome" oninput="formatInput(this); calculateNetCash()">
+        <label for="totalIncome">الدخل الكلي من السيستم:</label>
+        <input type="text" id="totalIncome" oninput="formatInput(this); calculateNetCash()">
 
-    <label for="generalIncome">دخل اليوم من المواد العامة:</label>
-    <input type="text" id="generalIncome" oninput="formatInput(this); calculateNetCash()">
+        <label for="generalIncome">دخل اليوم من المواد العامة:</label>
+        <input type="text" id="generalIncome" oninput="formatInput(this); calculateNetCash()">
 
-    <label for="remainingPreviousDay">الإجمالي المتبقي من اليوم السابق:</label>
-    <input type="text" id="remainingPreviousDay" oninput="formatInput(this); calculateNetCash()">
+        <label for="remainingPreviousDay">الإجمالي المتبقي من اليوم السابق:</label>
+        <input type="text" id="remainingPreviousDay" oninput="formatInput(this); calculateNetCash()">
 
-    <label for="remainingAfterPurchases">المتبقي من مبلغ الدفع للمشتريات:</label>
-    <input type="text" id="remainingAfterPurchases" oninput="formatInput(this); calculateNetCash()">
+        <label for="remainingAfterPurchases">المتبقي من مبلغ الدفع للمشتريات:</label>
+        <input type="text" id="remainingAfterPurchases" oninput="formatInput(this); calculateNetCash()">
 
-    <label for="dailyExpenses">مصروفات اليوم من غير المشتريات:</label>
-    <input type="text" id="dailyExpenses" oninput="formatInput(this); calculateNetCash()">
+        <label for="dailyExpenses">مصروفات اليوم من غير المشتريات:</label>
+        <input type="text" id="dailyExpenses" oninput="formatInput(this); calculateNetCash()">
 
-    <label for="tomorrowPurchases">المبلغ المخصص لمشتريات غداً:</label>
-    <input type="text" id="tomorrowPurchases" oninput="formatInput(this); calculateNetCash()">
+        <label for="tomorrowPurchases">المبلغ المخصص لمشتريات غداً:</label>
+        <input type="text" id="tomorrowPurchases" oninput="formatInput(this); calculateNetCash()">
 
-    <label for="changeForTomorrow">الخردة المتبقية لغداً:</label>
-    <input type="text" id="changeForTomorrow" oninput="formatInput(this); calculateNetCash()">
+        <label for="changeForTomorrow">الخردة المتبقية لغداً:</label>
+        <input type="text" id="changeForTomorrow" oninput="formatInput(this); calculateNetCash()">
 
-    <div class="result" id="netCashResult">الكاش الصافي: د.ع 0</div>
+        <div class="result" id="netCashResult">الكاش الصافي: د.ع 0</div>
+    </div>
 
     <script>
         function formatInput(input) {
-            // إزالة الفواصل السابقة
             let value = input.value.replace(/,/g, '');
-
-            // التأكد من أنه رقم صحيح
             if (!isNaN(value) && value.length > 0) {
-                // إضافة الفواصل للألفية
                 input.value = Number(value).toLocaleString('en-US');
             }
         }
